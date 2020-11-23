@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
-    tools:context=".MovieDetailsActivity">
+    tools:context=".MovieDetailsActivity"
+    android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
 
         <ImageView
             android:id="@+id/img_poster"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/poster"
@@ -96,7 +97,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-thin"
             android:text="@string/tag_line_text"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
@@ -197,7 +197,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-thin"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="@string/story_line_details_text"
@@ -220,108 +219,15 @@
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_story_line_details" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_first_artist"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_artist_list"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/robert_downey"
-            app:layout_constraintBottom_toTopOf="@id/tv_first_artist_info"
-            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
-            app:layout_constraintRight_toLeftOf="@id/img_second_artist"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast"
-            app:shapeAppearance="@style/shape_image_artist" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_second_artist"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/chris_evans"
-            app:layout_constraintBottom_toTopOf="@id/tv_second_artist_info"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toRightOf="@id/img_first_artist"
-            app:layout_constraintRight_toLeftOf="@id/img_third_artist"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast"
-            app:shapeAppearance="@style/shape_image_artist" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_third_artist"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/mark_ruffalo"
-            app:layout_constraintBottom_toTopOf="@id/tv_third_artist_info"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toRightOf="@id/img_second_artist"
-            app:layout_constraintRight_toLeftOf="@id/img_fourth_artist"
-            app:layout_constraintTop_toBottomOf="@id/tv_cast"
-            app:shapeAppearance="@style/shape_image_artist" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_fourth_artist"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/chris_hemsworth"
-            app:layout_constraintBottom_toTopOf="@id/tv_fourth_artist_info"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toRightOf="@id/img_third_artist"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_cast"
-            app:shapeAppearance="@style/shape_image_artist" />
-
-        <TextView
-            android:id="@+id/tv_first_artist_info"
-            style="@style/artist_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/robert_downey_text"
-            app:layout_constraintLeft_toLeftOf="@id/img_first_artist"
-            app:layout_constraintRight_toRightOf="@id/img_first_artist"
-            app:layout_constraintTop_toBottomOf="@id/img_first_artist" />
-
-        <TextView
-            android:id="@+id/tv_second_artist_info"
-            style="@style/artist_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/chris_evans"
-            app:layout_constraintLeft_toLeftOf="@id/img_second_artist"
-            app:layout_constraintRight_toRightOf="@id/img_second_artist"
-            app:layout_constraintTop_toBottomOf="@id/img_second_artist"/>
-
-        <TextView
-            android:id="@+id/tv_third_artist_info"
-            style="@style/artist_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/mark_ruffalo"
-            app:layout_constraintLeft_toLeftOf="@id/img_third_artist"
-            app:layout_constraintRight_toRightOf="@id/img_third_artist"
-            app:layout_constraintTop_toBottomOf="@id/img_third_artist"/>
-
-        <TextView
-            android:id="@+id/tv_fourth_artist_info"
-            style="@style/artist_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/chris_hemsworth_text"
-            app:layout_constraintLeft_toLeftOf="@id/img_fourth_artist"
-            app:layout_constraintRight_toRightOf="@id/img_fourth_artist"
-            app:layout_constraintTop_toBottomOf="@id/img_fourth_artist"/>
+            android:orientation="horizontal"
+            android:scrollbars="none"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
