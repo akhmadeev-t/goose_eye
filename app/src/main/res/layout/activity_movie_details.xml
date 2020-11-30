@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:background="@color/background"
     tools:context=".MovieDetailsActivity"
     android:fitsSystemWindows="false">
 
@@ -102,80 +102,30 @@
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-        <ImageView
-            android:id="@+id/img_first_star"
+        <ru.androidacademy.gooseeye.RatingBarSvg
+            android:id="@+id/ratingBar"
+            style="@style/custom_rating_bar_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_height="14dp"
+            android:numStars="5"
+            android:progressDrawable="@drawable/custom_rating_bar"
+            android:rating="4"
+            android:stepSize="0.01"
+            android:layout_marginTop="7dp"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
-            app:layout_constraintRight_toLeftOf="@id/img_second_star"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tag_line"/>
 
-        <ImageView
-            android:id="@+id/img_second_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/img_first_star"
-            app:layout_constraintRight_toLeftOf="@id/img_third_star"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
-
-        <ImageView
-            android:id="@+id/img_third_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/img_second_star"
-            app:layout_constraintRight_toLeftOf="@id/img_fourth_star"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
-
-        <ImageView
-            android:id="@+id/img_fourth_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/img_third_star"
-            app:layout_constraintRight_toLeftOf="@id/img_fifth_star"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
-
-        <ImageView
-            android:id="@+id/img_fifth_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_star_icon_gray"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/img_fourth_star"
-            app:layout_constraintRight_toLeftOf="@id/tv_review"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
 
         <TextView
             android:id="@+id/tv_review"
             style="@style/review_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif-black"
             android:text="@string/review_text"
-            app:layout_constraintLeft_toRightOf="@id/img_fifth_star"
+            app:layout_constraintLeft_toRightOf="@id/ratingBar"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
 
