@@ -2,7 +2,6 @@ package ru.androidacademy.gooseeye
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,16 +27,16 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun fillList(): List<ArtistInfo> {
-        val data = mutableListOf<ArtistInfo>()
-        data.add(ArtistInfo(R.drawable.robert_downey, getString(R.string.robert_downey)))
-        data.add(ArtistInfo(R.drawable.chris_evans, getString(R.string.chris_evans)))
-        data.add(ArtistInfo(R.drawable.mark_ruffalo, getString(R.string.mark_ruffalo)))
-        data.add(ArtistInfo(R.drawable.chris_hemsworth, getString(R.string.chris_hemsworth)))
-        data.add(ArtistInfo(R.drawable.scarlett_johansson, getString(R.string.scarlett_johansson)))
-        data.add(ArtistInfo(R.drawable.jeremy_renner, getString(R.string.jeremy_renner)))
-        data.add(ArtistInfo(R.drawable.don_cheadle, getString(R.string.don_cheadle)))
-        data.add(ArtistInfo(R.drawable.paul_rudd, getString(R.string.paul_rudd)))
-        data.add(ArtistInfo(R.drawable.brie_larson, getString(R.string.brie_larson)))
-        return data
+        return mutableListOf(
+            ArtistInfo(R.drawable.robert_downey, getString(R.string.robert_downey)),
+            ArtistInfo(R.drawable.chris_evans, getString(R.string.chris_evans)),
+            ArtistInfo(R.drawable.mark_ruffalo, getString(R.string.mark_ruffalo)),
+            ArtistInfo(R.drawable.chris_hemsworth, getString(R.string.chris_hemsworth)),
+            ArtistInfo(R.drawable.scarlett_johansson, getString(R.string.scarlett_johansson)),
+            ArtistInfo(R.drawable.jeremy_renner, getString(R.string.jeremy_renner)),
+            ArtistInfo(R.drawable.don_cheadle, getString(R.string.don_cheadle)),
+            ArtistInfo(R.drawable.paul_rudd, getString(R.string.paul_rudd)),
+            ArtistInfo(R.drawable.brie_larson, getString(R.string.brie_larson))
+        )
     }
 }
