@@ -2,7 +2,7 @@
     <string name="app_name">Goose Eye</string>
     <string name="button_back_text">Back</string>
     <string name="pg_text">13+</string>
-    <string name="name_text">Avengers:\nEnd Game</string>
+    <string name="name_avengers">Avengers:\nEnd Game</string>
     <string name="tag_line_text">Action, Adventure, Fantasy</string>
     <string name="review_text">125 REVIEWS</string>
     <string name="story_line_text">Storyline</string>
@@ -19,4 +19,7 @@
     <string name="jeremy_renner">Jeremy Renner</string>
     <string name="paul_rudd">Paul Rudd</string>
     <string name="scarlett_johansson">Scarlett Johansson</string>
+    <string name="movies_list">Movies list</string>
+    <string name="item_name_avengers">Avengers: End Game</string>
+    <string name="item_min_avengers">137 MIN</string>
 </resources>
