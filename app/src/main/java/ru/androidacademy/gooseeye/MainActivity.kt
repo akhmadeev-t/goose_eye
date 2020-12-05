@@ -2,7 +2,6 @@ package ru.androidacademy.gooseeye
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.androidacademy.gooseeye.fragments.FragmentMoviesDetails
 import ru.androidacademy.gooseeye.fragments.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .apply {
-                    add(R.id.fl_movie_details, fragmentMoviesList)
+                    add(R.id.fragment_container, fragmentMoviesList)
                     commit()
                 }
         }
