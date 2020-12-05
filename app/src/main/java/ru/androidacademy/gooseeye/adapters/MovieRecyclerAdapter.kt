@@ -1,6 +1,5 @@
 package ru.androidacademy.gooseeye.adapters
 
-import android.content.ContentValues
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,10 @@ import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.RatingBarSvg
 import ru.androidacademy.gooseeye.models.MovieInfo
 
-class MovieRecyclerAdapter(private val values: List<MovieInfo>, private val listener: ClickListener) :
+class MovieRecyclerAdapter(
+    private val values: List<MovieInfo>,
+    private val listener: ClickListener
+) :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -22,40 +24,33 @@ class MovieRecyclerAdapter(private val values: List<MovieInfo>, private val list
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.moviePoster?.setImageResource(values[position].moviePoster)
-        holder.age?.text = values[position].age
-        holder.tag?.text = values[position].tag
-        holder.reviews?.text = values[position].reviews
-        holder.movieName?.text = values[position].movieName
-        holder.duration?.text = values[position].duration
-        holder.ratingBar?.rating = values[position].rating
-        holder.like?.isChecked = values[position].like
-
-        holder.itemView.setOnClickListener {listener.onClick(values[position])}
+        val movie = values[position]
+        holder.bind(movie)
+        holder.itemView.setOnClickListener { listener.onClick(movie) }
     }
 
     override fun getItemCount(): Int = values.size
 
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var moviePoster: ShapeableImageView? = null
-        var age: TextView? = null
-        var tag: TextView? = null
-        var reviews: TextView? = null
-        var movieName: TextView? = null
-        var duration: TextView? = null
-        var ratingBar: RatingBarSvg? = null
-        var like: CheckBox? = null
+        var moviePoster: ShapeableImageView? = itemView.findViewById(R.id.iv_movie_poster)
+        var age: TextView? = itemView.findViewById(R.id.tv_item_pg)
+        var tag: TextView? = itemView.findViewById(R.id.tv_item_tag)
+        var reviews: TextView? = itemView.findViewById(R.id.tv_review_item)
+        var movieName: TextView? = itemView.findViewById(R.id.tv_movie_name)
+        var duration: TextView? = itemView.findViewById(R.id.tv_min)
+        var ratingBar: RatingBarSvg? = itemView.findViewById(R.id.rb_item)
+        var like: CheckBox? = itemView.findViewById(R.id.cb_like)
 
-        init {
-            moviePoster = itemView.findViewById(R.id.iv_movie_poster)
-            age = itemView.findViewById(R.id.tv_item_pg)
-            tag = itemView.findViewById(R.id.tv_item_tag)
-            reviews = itemView.findViewById(R.id.tv_review_item)
-            movieName = itemView.findViewById(R.id.tv_movie_name)
-            duration = itemView.findViewById(R.id.tv_min)
-            ratingBar = itemView.findViewById(R.id.rb_item)
-            like = itemView.findViewById(R.id.cb_like)
+        fun bind(movie: MovieInfo) {
+            this.moviePoster?.setImageResource(movie.moviePoster)
+            this.age?.text = movie.age
+            this.tag?.text = movie.tag
+            this.reviews?.text = movie.reviews
+            this.movieName?.text = movie.movieName
+            this.duration?.text = movie.duration
+            this.ratingBar?.rating = movie.rating
+            this.like?.isChecked = movie.like
         }
     }
 }
