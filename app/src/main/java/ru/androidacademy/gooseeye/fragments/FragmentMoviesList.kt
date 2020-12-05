@@ -4,20 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
 import ru.androidacademy.gooseeye.adapters.ClickListener
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
-import ru.androidacademy.gooseeye.models.ArtistInfo
 import ru.androidacademy.gooseeye.models.MovieInfo
 
 class FragmentMoviesList : Fragment() {
@@ -43,14 +36,46 @@ class FragmentMoviesList : Fragment() {
 
     private fun fillList(): List<MovieInfo> {
         return mutableListOf(
-            MovieInfo(moviePoster = R.drawable.item_poster_avengers,
-                age = getString(R.string.pg_text),
-                tag = getString(R.string.tag_line_text),
-                reviews = getString(R.string.review_text),
-                movieName = getString(R.string.item_name_avengers),
-                duration = getString(R.string.item_min_avengers),
+            MovieInfo(
+                moviePoster = R.drawable.item_poster_avengers,
+                age = "13+",
+                tag = "Action, Adventure, Drama",
+                reviews = "125 REVIEWS",
+                movieName = "Avengers: End Game",
+                duration = "137 MIN",
                 rating = 4F,
-                like = false)
+                like = false
+            ),
+            MovieInfo(
+                R.drawable.item_poster_tenet,
+                "16+",
+                "Action, Sci-Fi, Thriller",
+                "98 REVIEWS",
+                "Tenet",
+                "97 MIN",
+                5F,
+                true
+            ),
+            MovieInfo(
+                R.drawable.item_poster_black_widow,
+                "13+",
+                "Action, Adventure, Sci-Fi",
+                "38 REVIEWS",
+                "Black Widow",
+                "102 MIN",
+                4F,
+                false
+            ),
+            MovieInfo(
+                R.drawable.item_poster_wonder_women,
+                "13+",
+                "Action, Adventure, Fantasy",
+                "74 REVIEWS",
+                "Wonder Women 1984",
+                "74 MIN",
+                5F,
+                false
+            )
         )
     }
 
@@ -58,7 +83,7 @@ class FragmentMoviesList : Fragment() {
         override fun onClick(movieInfo: MovieInfo) {
             val fragmentMoviesDetails = FragmentMoviesDetails()
             activity?.supportFragmentManager?.beginTransaction()?.apply {
-                add(R.id.fl_movie_details, fragmentMoviesDetails)
+                add(R.id.fragment_container, fragmentMoviesDetails)
                 addToBackStack(null)
                 setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 commit()
