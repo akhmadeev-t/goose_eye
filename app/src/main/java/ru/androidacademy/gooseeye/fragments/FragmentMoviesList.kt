@@ -1,5 +1,6 @@
 package ru.androidacademy.gooseeye.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,9 @@ class FragmentMoviesList : Fragment() {
     private fun setUpRecyclerViewMovie() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_movies_list)
         val layoutManager = GridLayoutManager(requireActivity(), 2)
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutManager.spanCount = 4
+        }
         layoutManager.orientation = GridLayoutManager.VERTICAL
         recyclerView?.layoutManager = layoutManager
         recyclerView?.adapter = MovieRecyclerAdapter(fillList(), clickListener)
