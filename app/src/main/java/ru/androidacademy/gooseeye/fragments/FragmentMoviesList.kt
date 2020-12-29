@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.androidacademy.gooseeye.R
@@ -14,7 +13,7 @@ import ru.androidacademy.gooseeye.adapters.ClickListener
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
 import ru.androidacademy.gooseeye.models.MovieInfo
 
-class FragmentMoviesList : Fragment() {
+class FragmentMoviesList(private val clickListener: ClickListener) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +33,10 @@ class FragmentMoviesList : Fragment() {
             layoutManager.spanCount = 4
         }
         layoutManager.orientation = GridLayoutManager.VERTICAL
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.adapter = MovieRecyclerAdapter(fillList(), clickListener)
+        recyclerView?.apply {
+            this.layoutManager = layoutManager
+            this.adapter = MovieRecyclerAdapter(fillList(), clickListener)
+        }
     }
 
     private fun fillList(): List<MovieInfo> {
@@ -83,15 +84,4 @@ class FragmentMoviesList : Fragment() {
         )
     }
 
-    private val clickListener = object : ClickListener {
-        override fun onClick(movieInfo: MovieInfo) {
-            val fragmentMoviesDetails = FragmentMoviesDetails()
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
-                add(R.id.fragment_container, fragmentMoviesDetails)
-                addToBackStack(null)
-                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                commit()
-            }
-        }
-    }
 }
