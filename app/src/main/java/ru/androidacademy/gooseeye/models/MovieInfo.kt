@@ -1,10 +1,10 @@
 package ru.androidacademy.gooseeye.models
 
-data class MovieInfo(var moviePoster: Int,
-                     var age: String,
-                     var tag: String,
-                     var reviews: String,
-                     var movieName: String,
-                     var duration: String,
-                     var rating: Float,
-                     var like: Boolean)
+data class MovieInfo(val moviePoster: Int,
+                     val age: String,
+                     val tag: String,
+                     val reviews: String,
+                     val movieName: String,
+                     val duration: String,
+                     val rating: Float,
+                     val like: Boolean)
