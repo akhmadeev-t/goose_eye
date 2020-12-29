@@ -13,7 +13,7 @@
     <color name="story_line_color">#ECECEC</color>
     <color name="shadow_color">#80000000</color>
     <color name="artist_color">#D8D8D8</color>
-    <color name="background">#191926</color>
+    <color name="background_color">#191926</color>
     <color name="min_color">#565665</color>
     <color name="like_filled_color">#FF3365</color>
 </resources>
