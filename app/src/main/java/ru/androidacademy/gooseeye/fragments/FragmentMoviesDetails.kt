@@ -2,19 +2,15 @@ package ru.androidacademy.gooseeye.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.models.ArtistInfo
 import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
 import ru.androidacademy.gooseeye.R
@@ -45,14 +41,21 @@ class FragmentMoviesDetails : Fragment() {
         val layoutManager = LinearLayoutManager(requireActivity())
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         val divider = DividerItemDecoration(recyclerView?.context, layoutManager.orientation)
-        divider.setDrawable(ContextCompat.getDrawable(recyclerView?.context!!, R.drawable.divider_separator)!!)
-        recyclerView.addItemDecoration(divider)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ArtistRecyclerAdapter(fillList())
+        divider.setDrawable(
+            ContextCompat.getDrawable(
+                recyclerView?.context!!,
+                R.drawable.divider_separator
+            )!!
+        )
+        recyclerView.apply {
+            addItemDecoration(divider)
+            this.layoutManager = layoutManager
+            this.adapter = ArtistRecyclerAdapter(fillList())
+        }
     }
 
     private fun fillList(): List<ArtistInfo> {
-        return mutableListOf(
+        return listOf(
             ArtistInfo(R.drawable.robert_downey, getString(R.string.robert_downey)),
             ArtistInfo(R.drawable.chris_evans, getString(R.string.chris_evans)),
             ArtistInfo(R.drawable.mark_ruffalo, getString(R.string.mark_ruffalo)),
