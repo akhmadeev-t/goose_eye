@@ -1,356 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
-    tools:context=".MovieDetailsActivity">
+    android:background="@color/background"
+    tools:context=".MovieDetailsActivity"
+    android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/background_image"
         android:layout_width="match_parent"
-        android:layout_height="298dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
 
-        <ImageView
-            android:id="@+id/image"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_margin_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_margin_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/poster"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/gradient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/img_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_mask"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintBottom_toBottomOf="@id/img_poster"
+            app:layout_constraintLeft_toLeftOf="@id/img_poster"
+            app:layout_constraintRight_toRightOf="@id/img_poster"
+            app:layout_constraintTop_toTopOf="@id/img_poster" />
 
-    <LinearLayout
-        android:id="@+id/top_menu"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="44dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/btn_back"
+            style="@style/button_back_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_gravity="center_vertical">
+            android:layout_marginTop="42dp"
+            android:alpha="0.5"
+            android:drawablePadding="8dp"
+            android:text="@string/button_back_text"
+            app:drawableStartCompat="@drawable/ic_path"
+            app:fontFamily="sans-serif-thin"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="6dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="3.5dp"
-                android:alpha="0.5"
-                android:src="@drawable/ic_path"/>
-
-            <TextView
-                style="@style/button_back_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:alpha="0.5"
-                android:text="@string/button_back_text"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/name_window"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="222dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/pg_window"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="12dp"
+        <TextView
+            android:id="@+id/tv_pg"
+            style="@style/pg_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="222dp"
+            android:layout_marginBottom="52dp"
             android:background="@drawable/ic_rectangle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="@string/pg_text"
+            app:layout_constraintBottom_toBottomOf="@id/img_poster"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintTop_toTopOf="@id/img_poster" />
 
-            <TextView
-                android:id="@+id/pg_tv"
-                style="@style/pg_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pg_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/name_tv"
+            android:id="@+id/tv_name"
             style="@style/name_style"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/pg_window"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:textStyle="bold"
-            android:text="@string/name_text"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tag_line"
-        style="@style/tag_line_style"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_window"
-        android:text="@string/tag_line_text"/>
-
-    <LinearLayout
-        android:id="@+id/review_window"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tag_line">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            android:layout_gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            android:layout_gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            android:layout_gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_star_icon"
-            android:layout_gravity="center_vertical"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_star_icon_gray"
-            android:layout_gravity="center_vertical"/>
+            android:text="@string/name_text"
+            app:fontFamily="sans-serif-black"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_pg" />
 
         <TextView
-            android:id="@+id/review_tv"
+            android:id="@+id/tv_tag_line"
+            style="@style/tag_line_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tag_line_text"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <ru.androidacademy.gooseeye.RatingBarSvg
+            android:id="@+id/ratingBar"
+            style="@style/custom_rating_bar_style"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:numStars="5"
+            android:progressDrawable="@drawable/custom_rating_bar"
+            android:rating="4"
+            android:stepSize="0.01"
+            android:layout_marginTop="7dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_tag_line"/>
+
+
+        <TextView
+            android:id="@+id/tv_review"
             style="@style/review_style"
             android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:layout_marginStart="9dp"
-            android:gravity="center_vertical"
-            android:text="@string/review_text"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/review_text"
+            app:layout_constraintLeft_toRightOf="@id/ratingBar"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
 
-    <LinearLayout
-        android:id="@+id/story_line_window"
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/review_window"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-        
         <TextView
+            android:id="@+id/tv_story_line"
             style="@style/story_line_cast_style"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="@string/story_line_text"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/story_line_text"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_review" />
 
         <TextView
+            android:id="@+id/tv_story_line_details"
             style="@style/story_line_details_style"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/story_line_details_text"
+            android:layout_marginTop="4dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
-    </LinearLayout>
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cast_window"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/story_line_window">
+            android:paddingBottom="10dp"
+            android:text="@string/story_line_details_text"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_story_line" />
 
         <TextView
-            android:id="@+id/cast_tv"
+            android:id="@+id/tv_cast"
             style="@style/story_line_cast_style"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="sans-serif-black"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:text="@string/cast_text"/>
+            android:text="@string/cast_text"
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_story_line_details" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="4"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_artist_list"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cast_tv"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_cast"
+            android:orientation="horizontal"
+            android:scrollbars="none"/>
 
-            <LinearLayout
-                android:id="@+id/first_artist"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/robert_downey" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    style="@style/artist_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/robert_downey_text" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/second_artist"
-                android:layout_width="0dp"
-                android:layout_height="118dp"
-                android:layout_weight="1"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/chris_evans" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    style="@style/artist_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/chris_evans" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/third_artist"
-                android:layout_width="0dp"
-                android:layout_height="118dp"
-                android:layout_weight="1"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mark_ruffalo" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    style="@style/artist_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mark_ruffalo" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/fourth_artist"
-                android:layout_width="0dp"
-                android:layout_height="118dp"
-                android:layout_weight="1"
-                android:layout_marginTop="7dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/chris_hemsworth" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    style="@style/artist_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/chris_hemsworth_text" />
-            </LinearLayout>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
