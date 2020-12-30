@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.adapters.ClickListener
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
 import ru.androidacademy.gooseeye.models.MovieInfo
 
-class FragmentMoviesList(private val clickListener: ClickListener) : Fragment() {
+class FragmentMoviesList : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,14 +33,16 @@ class FragmentMoviesList(private val clickListener: ClickListener) : Fragment() 
             layoutManager.spanCount = 4
         }
         layoutManager.orientation = GridLayoutManager.VERTICAL
+        val movieAdapter = MovieRecyclerAdapter { (activity as MainActivity).showMovieDetails(it) }
+        movieAdapter.setMovies(fillList())
         recyclerView?.apply {
             this.layoutManager = layoutManager
-            this.adapter = MovieRecyclerAdapter(fillList(), clickListener)
+            this.adapter = movieAdapter
         }
     }
 
     private fun fillList(): List<MovieInfo> {
-        return mutableListOf(
+        return listOf(
             MovieInfo(
                 moviePoster = R.drawable.item_poster_avengers,
                 age = "13+",

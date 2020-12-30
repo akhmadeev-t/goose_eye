@@ -11,11 +11,10 @@ import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.RatingBarSvg
 import ru.androidacademy.gooseeye.models.MovieInfo
 
-class MovieRecyclerAdapter(
-    private val values: List<MovieInfo>,
-    private val listener: ClickListener
-) :
+class MovieRecyclerAdapter(private val listener: (MovieInfo) -> Unit) :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
+
+    private var values = listOf<MovieInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -26,7 +25,7 @@ class MovieRecyclerAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = values[position]
         holder.bind(movie)
-        holder.itemView.setOnClickListener { listener.onClick(movie) }
+        holder.itemView.setOnClickListener { listener(movie) }
     }
 
     override fun getItemCount(): Int = values.size
@@ -53,8 +52,9 @@ class MovieRecyclerAdapter(
             this.like.isChecked = movie.like
         }
     }
-}
 
-interface ClickListener {
-    fun onClick(movieInfo: MovieInfo)
+    fun setMovies(list: List<MovieInfo>) {
+        values = list
+        notifyDataSetChanged()
+    }
 }
