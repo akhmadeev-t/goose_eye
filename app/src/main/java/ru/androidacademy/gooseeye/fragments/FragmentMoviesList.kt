@@ -9,12 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.adapters.ClickListener
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
 import ru.androidacademy.gooseeye.models.MovieInfo
 
 class FragmentMoviesList : Fragment() {
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater,
