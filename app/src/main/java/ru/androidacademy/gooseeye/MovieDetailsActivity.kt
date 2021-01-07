@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
+import ru.androidacademy.gooseeye.models.ArtistInfo
 
 class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

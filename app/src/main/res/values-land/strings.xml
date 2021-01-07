@@ -22,5 +22,5 @@
     <string name="movies_list">Movies list</string>
     <string name="item_name_avengers">Avengers: End Game</string>
     <string name="item_min_avengers">137 MIN</string>
-    <string name="dimension_ratio_poster">500:298</string>
+    <string name="dimension_ratio_poster">30000:10000</string>
 </resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="170dp"
+        android:layout_height="296dp"
+        android:src="@drawable/ic_bg_item_movie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="2dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="48dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_movie_poster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_margin_bottom"
+        app:layout_constraintLeft_toLeftOf="@id/iv_bg"
+        app:layout_constraintRight_toRightOf="@id/iv_bg"
+        app:layout_constraintTop_toBottomOf="@id/guideline_margin_top"
+        app:shapeAppearance="@drawable/item_poster_avengers"
+        tools:src="@drawable/item_poster_avengers" />
+
+    <ImageView
+        android:id="@+id/iv_movie_mask"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_mask_item_movie"
+        app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
+        app:layout_constraintLeft_toLeftOf="@id/iv_bg"
+        app:layout_constraintRight_toRightOf="@id/iv_bg"
+        app:layout_constraintTop_toTopOf="@id/iv_movie_poster" />
+
+    <CheckBox
+        android:id="@+id/cb_like"
+        android:layout_width="16dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="6dp"
+        android:button="@drawable/like_selector"
+        android:checked="false"
+        android:theme="@style/like_check_box_style"
+        app:layout_constraintRight_toRightOf="@id/iv_bg"
+        app:layout_constraintTop_toTopOf="@id/iv_bg" />
+
+    <TextView
+        android:id="@+id/tv_item_pg"
+        style="@style/pg_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_rectangle"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="@id/iv_bg"
+        app:layout_constraintTop_toTopOf="@id/iv_bg"
+        tools:text="@string/pg_text" />
+
+    <TextView
+        android:id="@+id/tv_item_tag"
+        style="@style/tag_line_style_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="22dp"
+        android:fontFamily="sans-serif-thin"
+        app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
+        app:layout_constraintLeft_toLeftOf="@id/iv_bg"
+        tools:text="@string/tag_line_text" />
+
+    <ru.androidacademy.gooseeye.RatingBarSvg
+        android:id="@+id/rb_item"
+        style="@style/rating_bar_item_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:numStars="5"
+        android:stepSize="0.01"
+        app:layout_constraintLeft_toLeftOf="@id/tv_item_tag"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_tag"
+        tools:rating="4" />
+
+    <TextView
+        android:id="@+id/tv_review_item"
+        style="@style/review_item_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintLeft_toRightOf="@id/rb_item"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_tag"
+        tools:text="@string/review_text" />
+
+    <TextView
+        android:id="@+id/tv_movie_name"
+        style="@style/name_item_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintBottom_toTopOf="@id/tv_min"
+        app:layout_constraintLeft_toLeftOf="@id/tv_item_tag"
+        tools:text="@string/item_name_avengers" />
+
+    <TextView
+        android:id="@+id/tv_min"
+        style="@style/min_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintBottom_toBottomOf="@id/iv_bg"
+        app:layout_constraintLeft_toLeftOf="@id/tv_movie_name"
+        tools:text="@string/item_min_avengers" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

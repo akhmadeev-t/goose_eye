@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye
+package ru.androidacademy.gooseeye.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
+import ru.androidacademy.gooseeye.models.ArtistInfo
+import ru.androidacademy.gooseeye.R
 
 class ArtistRecyclerAdapter(private val values: List<ArtistInfo>) :
     RecyclerView.Adapter<ArtistRecyclerAdapter.ArtistViewHolder>() {

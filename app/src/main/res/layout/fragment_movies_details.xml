@@ -29,13 +29,12 @@
 
         <ImageView
             android:id="@+id/img_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
+            android:layout_width="0dp"
+            android:layout_height="298dp"
             android:scaleType="centerCrop"
             android:src="@drawable/poster"
+            app:layout_constraintDimensionRatio="@string/dimension_ratio_poster"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -69,15 +68,13 @@
             style="@style/pg_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="222dp"
             android:layout_marginBottom="52dp"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:text="@string/pg_text"
             app:layout_constraintBottom_toBottomOf="@id/img_poster"
-            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
-            app:layout_constraintTop_toTopOf="@id/img_poster" />
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start" />
 
 
         <TextView
