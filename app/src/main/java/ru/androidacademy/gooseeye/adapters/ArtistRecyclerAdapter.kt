@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
-import ru.androidacademy.gooseeye.models.ArtistInfo
 import ru.androidacademy.gooseeye.R
+import ru.androidacademy.gooseeye.data.Actor
 
-class ArtistRecyclerAdapter(private val values: List<ArtistInfo>) :
+class ArtistRecyclerAdapter(private val values: List<Actor>) :
     RecyclerView.Adapter<ArtistRecyclerAdapter.ArtistViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
@@ -19,8 +20,7 @@ class ArtistRecyclerAdapter(private val values: List<ArtistInfo>) :
     }
 
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
-        holder.artistPhoto?.setImageResource(values[position].artistPhoto)
-        holder.artistName?.text = values[position].artistName
+        holder.bind(values[position])
     }
 
     override fun getItemCount(): Int {
@@ -28,12 +28,15 @@ class ArtistRecyclerAdapter(private val values: List<ArtistInfo>) :
     }
 
     class ArtistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var artistPhoto: ShapeableImageView? = null
-        var artistName: TextView? = null
+        private val artistPhoto: ShapeableImageView = itemView.findViewById(R.id.img_artist)
+        private val artistName: TextView = itemView.findViewById(R.id.tv_artist_info)
 
-        init {
-            artistPhoto = itemView.findViewById(R.id.img_artist)
-            artistName = itemView.findViewById(R.id.tv_artist_info)
+        fun bind(actor: Actor) {
+            Glide
+                .with(itemView)
+                .load(actor.picture)
+                .into(artistPhoto)
+            artistName.text = actor.name
         }
     }
 }

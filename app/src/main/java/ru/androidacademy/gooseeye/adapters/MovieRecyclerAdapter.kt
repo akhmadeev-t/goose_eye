@@ -6,15 +6,19 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.RatingBarSvg
+import ru.androidacademy.gooseeye.data.Genre
+import ru.androidacademy.gooseeye.data.Movie
 import ru.androidacademy.gooseeye.models.MovieInfo
+import kotlin.random.Random
 
-class MovieRecyclerAdapter(private val listener: (MovieInfo) -> Unit) :
+class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
 
-    private var values = listOf<MovieInfo>()
+    private var values = listOf<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -41,19 +45,20 @@ class MovieRecyclerAdapter(private val listener: (MovieInfo) -> Unit) :
         private val ratingBar: RatingBarSvg = itemView.findViewById(R.id.rb_item)
         private val like: CheckBox = itemView.findViewById(R.id.cb_like)
 
-        fun bind(movie: MovieInfo) {
-            this.moviePoster.setImageResource(movie.moviePoster)
-            this.age.text = movie.age
-            this.tag.text = movie.tag
-            this.reviews.text = movie.reviews
-            this.movieName.text = movie.movieName
-            this.duration.text = movie.duration
-            this.ratingBar.rating = movie.rating
-            this.like.isChecked = movie.like
+        fun bind(movie: Movie) {
+            Glide.with(itemView).load(movie.poster).into(moviePoster)
+            age.text = "${movie.minimumAge}${itemView.resources.getString(R.string.pg_text)}"
+            tag.text = movie.getGenres()
+            reviews.text =
+                "${movie.numberOfRatings} ${itemView.resources.getString(R.string.review_text)}"
+            movieName.text = movie.title
+            duration.text = "${movie.runtime} ${itemView.resources.getString(R.string.item_min)}"
+            ratingBar.rating = (movie.ratings) / 2
+            like.isChecked = false
         }
     }
 
-    fun setMovies(list: List<MovieInfo>) {
+    fun setMovies(list: List<Movie>) {
         values = list
         notifyDataSetChanged()
     }
