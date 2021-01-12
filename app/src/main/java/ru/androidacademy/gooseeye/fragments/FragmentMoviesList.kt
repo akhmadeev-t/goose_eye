@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
-import ru.androidacademy.gooseeye.models.MovieInfo
+import ru.androidacademy.gooseeye.data.loadMovies
 
 class FragmentMoviesList : Fragment() {
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    lateinit var movieAdapter: MovieRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,57 +39,18 @@ class FragmentMoviesList : Fragment() {
             layoutManager.spanCount = 4
         }
         layoutManager.orientation = GridLayoutManager.VERTICAL
-        val movieAdapter = MovieRecyclerAdapter { (activity as MainActivity).showMovieDetails(it) }
-        movieAdapter.setMovies(fillList())
+        movieAdapter = MovieRecyclerAdapter { (activity as MainActivity).showMovieDetails(it) }
+        fillList()
         recyclerView?.apply {
             this.layoutManager = layoutManager
             this.adapter = movieAdapter
         }
     }
 
-    private fun fillList(): List<MovieInfo> {
-        return listOf(
-            MovieInfo(
-                moviePoster = R.drawable.item_poster_avengers,
-                age = "13+",
-                tag = "Action, Adventure, Drama",
-                reviews = "125 REVIEWS",
-                movieName = "Avengers: End Game",
-                duration = "137 MIN",
-                rating = 4F,
-                like = false
-            ),
-            MovieInfo(
-                R.drawable.item_poster_tenet,
-                "16+",
-                "Action, Sci-Fi, Thriller",
-                "98 REVIEWS",
-                "Tenet",
-                "97 MIN",
-                5F,
-                true
-            ),
-            MovieInfo(
-                R.drawable.item_poster_black_widow,
-                "13+",
-                "Action, Adventure, Sci-Fi",
-                "38 REVIEWS",
-                "Black Widow",
-                "102 MIN",
-                4F,
-                false
-            ),
-            MovieInfo(
-                R.drawable.item_poster_wonder_women,
-                "13+",
-                "Action, Adventure, Fantasy",
-                "74 REVIEWS",
-                "Wonder Women 1984",
-                "74 MIN",
-                5F,
-                false
-            )
-        )
+    private fun fillList() {
+        coroutineScope.launch {
+            movieAdapter.setMovies(loadMovies(requireContext()))
+        }
     }
 
 }
