@@ -5,37 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fitsSystemWindows="false"
-    tools:context=".MovieDetailsActivity">
+    android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/dimen_4x">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_margin_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
+            app:layout_constraintGuide_begin="@dimen/dimen_4x" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_margin_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
+            app:layout_constraintGuide_end="@dimen/dimen_4x" />
 
         <ImageView
             android:id="@+id/img_poster"
             android:layout_width="0dp"
-            android:layout_height="298dp"
+            android:layout_height="@dimen/dimen_poster_details_height"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/poster"
-            app:layout_constraintDimensionRatio="@string/dimension_ratio_poster"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:src="@drawable/poster" />
 
         <ImageView
             android:id="@+id/img_gradient"
@@ -54,9 +54,9 @@
             style="@style/button_back_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="@dimen/dimen_10x"
             android:alpha="0.5"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/dimen_2x"
             android:text="@string/button_back_text"
             app:drawableStartCompat="@drawable/ic_path"
             app:fontFamily="sans-serif-thin"
@@ -68,13 +68,13 @@
             style="@style/pg_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="@dimen/dimen_13x"
             android:background="@drawable/ic_rectangle"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="@string/pg_text"
             app:layout_constraintBottom_toBottomOf="@id/img_poster"
-            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start" />
+            app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+            tools:text="@string/pg_text" />
 
 
         <TextView
@@ -82,35 +82,35 @@
             style="@style/name_details_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/name_avengers"
             app:fontFamily="sans-serif-black"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_pg" />
+            app:layout_constraintTop_toBottomOf="@id/tv_pg"
+            tools:text="@string/name_avengers" />
 
         <TextView
             android:id="@+id/tv_tag_line"
             style="@style/tag_line_style_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/tag_line_text"
+            android:layout_marginTop="@dimen/dimen_1x"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="@string/tag_line_text" />
 
         <ru.androidacademy.gooseeye.RatingBarSvg
             android:id="@+id/ratingBar"
             style="@style/rating_bar_details_style"
             android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_marginTop="7dp"
+            android:layout_height="@dimen/dimen_4x"
+            android:layout_marginTop="@dimen/dimen_2x"
             android:numStars="5"
             android:progressDrawable="@drawable/rating_bar_details"
-            android:rating="4"
             android:stepSize="0.01"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
+            tools:rating="4" />
 
 
         <TextView
@@ -118,20 +118,20 @@
             style="@style/review_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/dimen_2x"
+            android:layout_marginTop="@dimen/dimen_1x"
             android:fontFamily="sans-serif-black"
-            android:text="@string/review_text"
             app:layout_constraintLeft_toRightOf="@id/ratingBar"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag_line" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
+            tools:text="@string/review_text" />
 
         <TextView
             android:id="@+id/tv_story_line"
             style="@style/story_line_cast_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/dimen_6x"
             android:fontFamily="sans-serif-black"
             android:text="@string/story_line_text"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
@@ -143,24 +143,24 @@
             style="@style/white_14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="@string/story_line_details_text"
+            android:layout_marginTop="@dimen/dimen_1x"
+            android:paddingTop="@dimen/dimen_2x"
+            android:paddingBottom="@dimen/dimen_2x"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_story_line" />
+            app:layout_constraintTop_toBottomOf="@id/tv_story_line"
+            tools:text="@string/story_line_details_text" />
 
         <TextView
             android:id="@+id/tv_cast"
             style="@style/story_line_cast_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginTop="@dimen/dimen_6x"
+            android:layout_marginBottom="@dimen/dimen_2x"
             android:fontFamily="sans-serif-black"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+            android:paddingTop="@dimen/dimen_1x"
+            android:paddingBottom="@dimen/dimen_1x"
             android:text="@string/cast_text"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
