@@ -1,26 +1,17 @@
 <resources>
     <string name="app_name">Goose Eye</string>
     <string name="button_back_text">Back</string>
-    <string name="pg_text">13+</string>
+    <string name="pg_text">+</string>
     <string name="name_avengers">Avengers:\nEnd Game</string>
     <string name="tag_line_text">Action, Adventure, Fantasy</string>
-    <string name="review_text">125 REVIEWS</string>
+    <string name="review_text">REVIEWS</string>
     <string name="story_line_text">Storyline</string>
     <string name="story_line_details_text">After the devastating events of Avengers: Infinity War,
         the universe is in ruins. With the help of remaining allies, the Avengers assemble once
         more in order to reverse Thanos&quot; actions and restore balance to the universe.</string>
     <string name="cast_text">Cast</string>
-    <string name="robert_downey">Robert Downey Jr.</string>
-    <string name="chris_hemsworth">Chris Hemsworth</string>
     <string name="mark_ruffalo">Mark Ruffalo</string>
-    <string name="chris_evans">Chris Evans</string>
-    <string name="brie_larson">Brie Larson</string>
-    <string name="don_cheadle">Don Cheadle</string>
-    <string name="jeremy_renner">Jeremy Renner</string>
-    <string name="paul_rudd">Paul Rudd</string>
-    <string name="scarlett_johansson">Scarlett Johansson</string>
     <string name="movies_list">Movies list</string>
     <string name="item_name_avengers">Avengers: End Game</string>
-    <string name="item_min_avengers">137 MIN</string>
-    <string name="dimension_ratio_poster">30000:10000</string>
+    <string name="item_min">MIN</string>
 </resources>
