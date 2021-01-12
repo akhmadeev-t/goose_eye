@@ -10,10 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.RatingBarSvg
-import ru.androidacademy.gooseeye.data.Genre
 import ru.androidacademy.gooseeye.data.Movie
-import ru.androidacademy.gooseeye.models.MovieInfo
-import kotlin.random.Random
 
 class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
