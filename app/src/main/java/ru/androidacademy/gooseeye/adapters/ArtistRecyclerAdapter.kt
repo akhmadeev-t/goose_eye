@@ -35,6 +35,7 @@ class ArtistRecyclerAdapter(private val values: List<Actor>) :
             Glide
                 .with(itemView)
                 .load(actor.picture)
+                .placeholder(R.drawable.placeholder_actor)
                 .into(artistPhoto)
             artistName.text = actor.name
         }
