@@ -15,7 +15,7 @@ import ru.androidacademy.gooseeye.data.Movie
 class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
 
-    private var values = listOf<Movie>()
+    private var values = emptyList<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -31,7 +31,6 @@ class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
 
     override fun getItemCount(): Int = values.size
 
-
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val moviePoster: ShapeableImageView = itemView.findViewById(R.id.iv_movie_poster)
         private val age: TextView = itemView.findViewById(R.id.tv_item_pg)
@@ -43,11 +42,20 @@ class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
         private val like: CheckBox = itemView.findViewById(R.id.cb_like)
 
         fun bind(movie: Movie) {
-            Glide.with(itemView).load(movie.poster).into(moviePoster)
+            Glide
+                .with(itemView)
+                .load(movie.poster)
+                .placeholder(R.drawable.placeholder_movie)
+                .into(moviePoster)
             age.text = "${movie.minimumAge}${itemView.resources.getString(R.string.pg_text)}"
-            tag.text = movie.getGenres()
+            tag.text = movie.genres.joinToString { it.name }
             reviews.text =
-                "${movie.numberOfRatings} ${itemView.resources.getString(R.string.review_text)}"
+                "${movie.numberOfRatings} ${
+                    itemView.resources.getQuantityString(
+                        R.plurals.review_plurals,
+                        movie.numberOfRatings
+                    )
+                }"
             movieName.text = movie.title
             duration.text = "${movie.runtime} ${itemView.resources.getString(R.string.item_min)}"
             ratingBar.rating = (movie.ratings) / 2
