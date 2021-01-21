@@ -16,16 +16,4 @@ data class Movie(
     val runtime: Int,
     val genres: List<Genre>,
     val actors: List<Actor>
-) : Parcelable {
-    fun getGenres(): String {
-        var tagString = ""
-        val size = genres.size - 1
-        genres.forEachIndexed { index, genre ->
-            tagString += genre.name
-            if (index < size) {
-                tagString += ", "
-            }
-        }
-        return tagString
-    }
-}
+) : Parcelable
