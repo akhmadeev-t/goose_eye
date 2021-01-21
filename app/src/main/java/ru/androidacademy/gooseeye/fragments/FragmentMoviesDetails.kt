@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,19 +37,20 @@ class FragmentMoviesDetails : Fragment() {
         view.findViewById<TextView>(R.id.tv_pg).text =
             "${movie.minimumAge}${view.resources.getString(R.string.pg_text)}"
         view.findViewById<TextView>(R.id.tv_name).text = movie.title
-        view.findViewById<TextView>(R.id.tv_tag_line).text = movie.getGenres()
+        view.findViewById<TextView>(R.id.tv_tag_line).text = movie.genres.joinToString { it.name }
         view.findViewById<RatingBarSvg>(R.id.ratingBar).rating = (movie.ratings) / 2
         view.findViewById<TextView>(R.id.tv_review).text =
-            "${movie.numberOfRatings} ${view.resources.getString(R.string.review_text)}"
+            "${movie.numberOfRatings} ${
+                view.resources.getQuantityString(
+                    R.plurals.review_plurals,
+                    movie.numberOfRatings
+                )
+            }"
         view.findViewById<TextView>(R.id.tv_story_line_details).text = movie.overview
         val backButton = view.findViewById<TextView>(R.id.btn_back)
         setUpRecyclerViewArtist()
         backButton.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
-                remove(this@FragmentMoviesDetails)
-                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                commit()
-            }
+            activity?.onBackPressed()
         }
     }
 
