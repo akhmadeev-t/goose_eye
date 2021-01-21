@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
@@ -32,15 +33,23 @@ class FragmentMoviesList : Fragment() {
         setUpRecyclerViewMovie()
     }
 
+    override fun onStart() {
+        super.onStart()
+        fillList()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        coroutineScope.cancel()
+    }
+
     private fun setUpRecyclerViewMovie() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_movies_list)
-        val layoutManager = GridLayoutManager(requireActivity(), 2)
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            layoutManager.spanCount = 4
-        }
-        layoutManager.orientation = GridLayoutManager.VERTICAL
+        val layoutManager = GridLayoutManager(
+            requireActivity(),
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 2
+        )
         movieAdapter = MovieRecyclerAdapter { (activity as MainActivity).showMovieDetails(it) }
-        fillList()
         recyclerView?.apply {
             this.layoutManager = layoutManager
             this.adapter = movieAdapter
@@ -51,6 +60,10 @@ class FragmentMoviesList : Fragment() {
         coroutineScope.launch {
             movieAdapter.setMovies(loadMovies(requireContext()))
         }
+    }
+
+    companion object {
+        fun newInstance() = FragmentMoviesList()
     }
 
 }
