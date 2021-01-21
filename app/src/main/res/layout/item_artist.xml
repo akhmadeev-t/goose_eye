@@ -12,16 +12,16 @@
         android:layout_width="@dimen/dimen_item_actor_image"
         android:layout_height="@dimen/dimen_item_actor_image"
         android:scaleType="centerCrop"
-        tools:src="@drawable/mark_ruffalo"
-        app:shapeAppearance="@style/shape_image_artist" />
+        tools:src="@tools:sample/avatars"
+        app:shapeAppearance="@style/shapeActorPhotoStyle" />
 
     <TextView
         android:id="@+id/tv_artist_info"
-        style="@style/artist_style"
+        style="@style/actorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_2x"
         android:fontFamily="sans-serif-black"
-        tools:text="@string/mark_ruffalo" />
+        tools:text="@tools:sample/full_names" />
 
 </LinearLayout>

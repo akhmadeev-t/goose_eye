@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/background_color"
     android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,8 +33,8 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/poster" />
 
         <ImageView
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/btn_back"
-            style="@style/button_back_style"
+            style="@style/buttonBackStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10x"
@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/tv_pg"
-            style="@style/pg_style"
+            style="@style/pgStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen_13x"
@@ -74,34 +74,34 @@
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@id/img_poster"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
-            tools:text="@string/pg_text" />
+            tools:text="+13" />
 
 
         <TextView
             android:id="@+id/tv_name"
-            style="@style/name_details_style"
+            style="@style/nameDetailsStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:fontFamily="sans-serif-black"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_pg"
-            tools:text="@string/name_avengers" />
+            tools:text="Avengers:\nEnd Game" />
 
         <TextView
             android:id="@+id/tv_tag_line"
-            style="@style/tag_line_style_details"
+            style="@style/tagLineDetailsStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_1x"
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
-            tools:text="@string/tag_line_text" />
+            tools:text="Action, Adventure, Drama" />
 
         <ru.androidacademy.gooseeye.RatingBarSvg
             android:id="@+id/ratingBar"
-            style="@style/rating_bar_details_style"
+            style="@style/ratingBarDetailsStyle"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dimen_4x"
             android:layout_marginTop="@dimen/dimen_2x"
@@ -115,20 +115,21 @@
 
         <TextView
             android:id="@+id/tv_review"
-            style="@style/review_style"
+            style="@style/reviewDetailsStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_2x"
             android:layout_marginTop="@dimen/dimen_1x"
             android:fontFamily="sans-serif-black"
+            android:textAllCaps="true"
             app:layout_constraintLeft_toRightOf="@id/ratingBar"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
-            tools:text="@string/review_text" />
+            tools:text="reviews" />
 
         <TextView
             android:id="@+id/tv_story_line"
-            style="@style/story_line_cast_style"
+            style="@style/storyLineCastStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_6x"
@@ -140,7 +141,7 @@
 
         <TextView
             android:id="@+id/tv_story_line_details"
-            style="@style/white_14sp"
+            style="@style/whiteTextStyle14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_1x"
@@ -149,11 +150,11 @@
             app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
             app:layout_constraintTop_toBottomOf="@id/tv_story_line"
-            tools:text="@string/story_line_details_text" />
+            tools:text="@tools:sample/lorem/random" />
 
         <TextView
             android:id="@+id/tv_cast"
-            style="@style/story_line_cast_style"
+            style="@style/storyLineCastStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_6x"
