@@ -47,7 +47,7 @@ private suspend fun loadGenres(context: Context): List<Genre> = withContext(Disp
     parseGenres(data)
 }
 
-internal fun parseGenres(data: String): List<Genre> {
+private fun parseGenres(data: String): List<Genre> {
     val jsonGenres = jsonFormat.decodeFromString<List<JsonGenre>>(data)
     return jsonGenres.map { Genre(id = it.id, name = it.name) }
 }
@@ -62,12 +62,11 @@ private suspend fun loadActors(context: Context): List<Actor> = withContext(Disp
     parseActors(data)
 }
 
-internal fun parseActors(data: String): List<Actor> {
+private fun parseActors(data: String): List<Actor> {
     val jsonActors = jsonFormat.decodeFromString<List<JsonActor>>(data)
     return jsonActors.map { Actor(id = it.id, name = it.name, picture = it.profilePicture) }
 }
 
-@Suppress("unused")
 internal suspend fun loadMovies(context: Context): List<Movie> = withContext(Dispatchers.IO) {
     val genresMap = loadGenres(context)
     val actorsMap = loadActors(context)
@@ -76,7 +75,7 @@ internal suspend fun loadMovies(context: Context): List<Movie> = withContext(Dis
     parseMovies(data, genresMap, actorsMap)
 }
 
-internal fun parseMovies(
+private fun parseMovies(
     data: String,
     genres: List<Genre>,
     actors: List<Actor>
@@ -87,7 +86,6 @@ internal fun parseMovies(
     val jsonMovies = jsonFormat.decodeFromString<List<JsonMovie>>(data)
 
     return jsonMovies.map { jsonMovie ->
-        @Suppress("unused")
         (Movie(
         id = jsonMovie.id,
         title = jsonMovie.title,
