@@ -12,11 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragmentMoviesList = FragmentMoviesList()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .apply {
-                    add(R.id.fragment_container, fragmentMoviesList)
+                    add(R.id.fragment_container, FragmentMoviesList.newInstance())
                     commit()
                 }
         }
@@ -30,5 +29,4 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
 }
