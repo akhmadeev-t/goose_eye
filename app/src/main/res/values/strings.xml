@@ -2,16 +2,12 @@
     <string name="app_name">Goose Eye</string>
     <string name="button_back_text">Back</string>
     <string name="pg_text">+</string>
-    <string name="name_avengers">Avengers:\nEnd Game</string>
-    <string name="tag_line_text">Action, Adventure, Fantasy</string>
-    <string name="review_text">REVIEWS</string>
     <string name="story_line_text">Storyline</string>
-    <string name="story_line_details_text">After the devastating events of Avengers: Infinity War,
-        the universe is in ruins. With the help of remaining allies, the Avengers assemble once
-        more in order to reverse Thanos&quot; actions and restore balance to the universe.</string>
     <string name="cast_text">Cast</string>
-    <string name="mark_ruffalo">Mark Ruffalo</string>
     <string name="movies_list">Movies list</string>
-    <string name="item_name_avengers">Avengers: End Game</string>
-    <string name="item_min">MIN</string>
+    <string name="item_min">min</string>
+    <plurals name="review_plurals">
+        <item quantity="one">review</item>
+        <item quantity="other">reviews</item>
+    </plurals>
 </resources>
