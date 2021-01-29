@@ -16,17 +16,24 @@ import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
 import ru.androidacademy.gooseeye.data.loadMovies
+import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
+import ru.androidacademy.gooseeye.databinding.FragmentMoviesListBinding
 
 class FragmentMoviesList : Fragment() {
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     lateinit var movieAdapter: MovieRecyclerAdapter
+    private var _binding: FragmentMoviesListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_movies_list, container, false)
+    ): View {
+        _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,19 +45,19 @@ class FragmentMoviesList : Fragment() {
         fillList()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroyView() {
+        super.onDestroyView()
         coroutineScope.cancel()
+        _binding = null
     }
 
     private fun setUpRecyclerViewMovie() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_movies_list)
         val layoutManager = GridLayoutManager(
             requireActivity(),
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 2
         )
         movieAdapter = MovieRecyclerAdapter { (activity as MainActivity).showMovieDetails(it) }
-        recyclerView?.apply {
+        binding.rvMoviesList.apply {
             this.layoutManager = layoutManager
             this.adapter = movieAdapter
         }

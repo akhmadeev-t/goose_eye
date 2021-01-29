@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.databinding.ActivityMainBinding
 import ru.androidacademy.gooseeye.fragments.FragmentMoviesDetails
 import ru.androidacademy.gooseeye.fragments.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

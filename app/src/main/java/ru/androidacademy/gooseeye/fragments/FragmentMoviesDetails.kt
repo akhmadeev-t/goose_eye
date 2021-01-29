@@ -16,59 +16,70 @@ import ru.androidacademy.gooseeye.RatingBarSvg
 import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
 import ru.androidacademy.gooseeye.data.Actor
 import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
 
 class FragmentMoviesDetails : Fragment() {
 
     private lateinit var movie: Movie
+    private var _binding: FragmentMoviesDetailsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_movies_details, container, false)
+    ): View {
+        _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movie = arguments?.getParcelable(MOVIE)!!
-        Glide
-            .with(view)
-            .load(movie.backdrop)
-            .into(view.findViewById(R.id.img_poster))
-        view.findViewById<TextView>(R.id.tv_pg).text =
-            "${movie.minimumAge}${view.resources.getString(R.string.pg_text)}"
-        view.findViewById<TextView>(R.id.tv_name).text = movie.title
-        view.findViewById<TextView>(R.id.tv_tag_line).text = movie.genres.joinToString { it.name }
-        view.findViewById<RatingBarSvg>(R.id.ratingBar).rating = (movie.ratings) / 2
-        view.findViewById<TextView>(R.id.tv_review).text =
-            "${movie.numberOfRatings} ${
+        binding.apply {
+            Glide
+                .with(view)
+                .load(movie.backdrop)
+                .into(imgPoster)
+            tvPg.text = "${movie.minimumAge}${view.resources.getString(R.string.pg_text)}"
+            tvName.text = movie.title
+            tvTagLine.text = movie.genres.joinToString { it.name }
+            ratingBar.rating = (movie.ratings) / 2
+            tvReview.text = "${movie.numberOfRatings} ${
                 view.resources.getQuantityString(
                     R.plurals.review_plurals,
                     movie.numberOfRatings
                 )
             }"
-        view.findViewById<TextView>(R.id.tv_story_line_details).text = movie.overview
-        val backButton = view.findViewById<TextView>(R.id.btn_back)
-        setUpRecyclerViewArtist()
-        backButton.setOnClickListener {
-            activity?.onBackPressed()
+            tvStoryLineDetails.text = movie.overview
+            btnBack.setOnClickListener {
+                activity?.onBackPressed()
+            }
         }
+        setUpRecyclerViewArtist()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setUpRecyclerViewArtist() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_artist_list)
         val linearLayoutManager = LinearLayoutManager(requireActivity())
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        val divider = DividerItemDecoration(recyclerView?.context, linearLayoutManager.orientation)
-        divider.setDrawable(
-            ContextCompat.getDrawable(
-                recyclerView?.context!!,
-                R.drawable.divider_separator
-            )!!
-        )
-        recyclerView.apply {
-            addItemDecoration(divider)
-            layoutManager = linearLayoutManager
-            adapter = ArtistRecyclerAdapter(fillList())
+        binding.apply {
+            val divider = DividerItemDecoration(rvArtistList.context, linearLayoutManager.orientation)
+            divider.setDrawable(
+                ContextCompat.getDrawable(
+                    rvArtistList.context!!,
+                    R.drawable.divider_separator
+                )!!
+            )
+            rvArtistList.apply {
+                addItemDecoration(divider)
+                layoutManager = linearLayoutManager
+                adapter = ArtistRecyclerAdapter(fillList())
+            }
         }
     }
 
