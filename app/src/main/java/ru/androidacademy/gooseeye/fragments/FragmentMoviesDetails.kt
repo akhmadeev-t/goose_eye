@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.RatingBarSvg
 import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
 import ru.androidacademy.gooseeye.data.Actor
 import ru.androidacademy.gooseeye.data.Movie
@@ -36,13 +34,20 @@ class FragmentMoviesDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movie = arguments?.getParcelable(MOVIE)!!
+        (activity as MainActivity).let {
+            it.setSupportActionBar(binding.toolbar)
+            it.supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+            }
+        }
         binding.apply {
             Glide
                 .with(view)
                 .load(movie.backdrop)
                 .into(imgPoster)
+            collapsingToolbar.title = movie.title
             tvPg.text = "${movie.minimumAge}${view.resources.getString(R.string.pg_text)}"
-            tvName.text = movie.title
             tvTagLine.text = movie.genres.joinToString { it.name }
             ratingBar.rating = (movie.ratings) / 2
             tvReview.text = "${movie.numberOfRatings} ${
@@ -52,9 +57,6 @@ class FragmentMoviesDetails : Fragment() {
                 )
             }"
             tvStoryLineDetails.text = movie.overview
-            btnBack.setOnClickListener {
-                activity?.onBackPressed()
-            }
         }
         setUpRecyclerViewArtist()
     }
@@ -68,7 +70,8 @@ class FragmentMoviesDetails : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireActivity())
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.apply {
-            val divider = DividerItemDecoration(rvArtistList.context, linearLayoutManager.orientation)
+            val divider =
+                DividerItemDecoration(rvArtistList.context, linearLayoutManager.orientation)
             divider.setDrawable(
                 ContextCompat.getDrawable(
                     rvArtistList.context!!,

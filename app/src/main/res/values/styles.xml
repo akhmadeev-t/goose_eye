@@ -77,6 +77,25 @@
         <item name="android:textColor">@color/min_color</item>
     </style>
 
+    <style name="expandedTitleDetailsStyle">
+        <item name="android:textSize">40sp</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingMultiplier">0.9</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/shadow_color</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">6</item>
+        <item name="android:shadowRadius">12</item>
+    </style>
+
+    <style name="collapsedTitleDetailsStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
     <style name="shapeActorPhotoStyle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>

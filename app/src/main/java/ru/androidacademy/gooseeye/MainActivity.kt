@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
