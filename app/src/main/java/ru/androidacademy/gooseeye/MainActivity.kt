@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import ru.androidacademy.gooseeye.data.Movie
 import ru.androidacademy.gooseeye.databinding.ActivityMainBinding
-import ru.androidacademy.gooseeye.fragments.FragmentMoviesDetails
+import ru.androidacademy.gooseeye.fragments.FragmentMovieDetails
 import ru.androidacademy.gooseeye.fragments.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showMovieDetails(movie: Movie) {
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container, FragmentMoviesDetails.newInstance(movie))
+            add(R.id.fragment_container, FragmentMovieDetails.newInstance(movie))
             addToBackStack(null)
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             commit()
