@@ -6,25 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 import ru.androidacademy.gooseeye.MainActivity
-import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
-import ru.androidacademy.gooseeye.data.loadMovies
-import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
 import ru.androidacademy.gooseeye.databinding.FragmentMoviesListBinding
+import ru.androidacademy.gooseeye.viewmodels.MoviesListViewModel
+import ru.androidacademy.gooseeye.viewmodels.MoviesListViewModelFactory
 
 class FragmentMoviesList : Fragment() {
 
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
     lateinit var movieAdapter: MovieRecyclerAdapter
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: MoviesListViewModel by viewModels { MoviesListViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +42,6 @@ class FragmentMoviesList : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        coroutineScope.cancel()
         _binding = null
     }
 
@@ -64,13 +58,12 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun fillList() {
-        coroutineScope.launch {
-            movieAdapter.setMovies(loadMovies(requireContext()))
+        viewModel.movies.observe(viewLifecycleOwner) {
+            movieAdapter.setMovies(it)
         }
     }
 
     companion object {
         fun newInstance() = FragmentMoviesList()
     }
-
 }
