@@ -13,10 +13,10 @@ class MoviesListViewModel(private val repository: Repository) : ViewModel() {
     val movies get() = _movies
 
     init {
-        getMovies()
+        loadMovies()
     }
 
-    private fun getMovies() {
+    private fun loadMovies() {
         viewModelScope.launch {
             val jsonMovies = repository.loadMovies()
             _movies.value = jsonMovies

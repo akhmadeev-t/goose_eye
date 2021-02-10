@@ -13,10 +13,10 @@ class MovieDetailsViewModel(private val movie: Movie) : ViewModel() {
     val actors get() = _actors
 
     init {
-        getMovie()
+        loadMovie()
     }
 
-    private fun getMovie() {
+    private fun loadMovie() {
         _movieDetails.value = movie
         _actors.value = movie.actors
     }
