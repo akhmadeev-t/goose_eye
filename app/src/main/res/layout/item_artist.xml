@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/artist_image"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dimen_item_actor_image"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_artist"
-        android:layout_width="@dimen/artist_image"
-        android:layout_height="@dimen/artist_image"
+        android:layout_width="@dimen/dimen_item_actor_image"
+        android:layout_height="@dimen/dimen_item_actor_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/mark_ruffalo"
-        app:shapeAppearance="@style/shape_image_artist" />
+        app:shapeAppearance="@style/shapeActorPhotoStyle"
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tv_artist_info"
-        style="@style/artist_style"
+        style="@style/actorStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/mark_ruffalo" />
+        android:layout_marginTop="@dimen/dimen_2x"
+        tools:text="@tools:sample/full_names" />
 
 </LinearLayout>

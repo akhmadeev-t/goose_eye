@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="button_back_style">
+    <style name="buttonBackStyle">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="pg_style">
+    <style name="pgStyle">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">sans-serif-black</item>
     </style>
 
-    <style name="name_style">
+    <style name="nameDetailsStyle">
         <item name="android:textSize">40sp</item>
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:lineSpacingMultiplier">0.9</item>
@@ -22,43 +23,107 @@
         <item name="android:shadowRadius">12</item>
     </style>
 
-    <style name="tag_line_style">
+    <style name="nameItemStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingMultiplier">0.9</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/shadow_color</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">6</item>
+        <item name="android:shadowRadius">12</item>
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="tagLineDetailsStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/tag_line_color</item>
+        <item name="fontFamily">sans-serif-thin</item>
     </style>
 
-    <style name="review_style">
+    <style name="tagLineTagStyle">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/tag_line_color</item>
+        <item name="fontFamily">sans-serif-thin</item>
+    </style>
+
+    <style name="reviewDetailsStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/review_color</item>
+        <item name="fontFamily">sans-serif-black</item>
     </style>
 
-    <style name="story_line_cast_style">
+    <style name="reviewItemStyle">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/review_color</item>
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="storyLineCastStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/story_line_color</item>
         <item name="android:shadowColor">@color/shadow_color</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">6</item>
         <item name="android:shadowRadius">12</item>
+        <item name="fontFamily">sans-serif-black</item>
     </style>
 
-    <style name="story_line_details_style">
+    <style name="whiteTextStyle14">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="artist_style">
+    <style name="actorStyle">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/artist_color</item>
+        <item name="fontFamily">sans-serif-black</item>
     </style>
 
-    <style name="shape_image_artist" parent="">
+    <style name="minStyle">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/min_color</item>
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="expandedTitleDetailsStyle">
+        <item name="android:textSize">40sp</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineSpacingMultiplier">0.9</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/shadow_color</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">6</item>
+        <item name="android:shadowRadius">12</item>
+    </style>
+
+    <style name="collapsedTitleDetailsStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="shapeActorPhotoStyle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
     </style>
 
-    <style name="custom_rating_bar_style" parent="Widget.AppCompat.RatingBar.Small">
-        <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
+    <style name="likeCheckBoxStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/like_filled_color</item>
+    </style>
+
+    <style name="ratingBarDetailsStyle" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/rating_bar_details</item>
         <item name="android:minHeight">12dp</item>
         <item name="android:maxHeight">12dp</item>
+    </style>
+
+    <style name="ratingBarItemStyle" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/rating_bar_item</item>
+        <item name="android:minHeight">8dp</item>
+        <item name="android:maxHeight">8dp</item>
     </style>
 </resources>

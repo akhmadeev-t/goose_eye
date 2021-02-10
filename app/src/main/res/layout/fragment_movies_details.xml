@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:fitsSystemWindows="false">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/collapsedTitleDetailsStyle"
+            app:contentScrim="@color/background_color"
+            app:expandedTitleTextAppearance="@style/expandedTitleDetailsStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:maxLines="2"
+            tools:title="Avengers: \nEnd Game">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_poster"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_poster_details_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/poster" />
+
+                <ImageView
+                    android:id="@+id/img_gradient"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_mask"
+                    app:layout_constraintBottom_toBottomOf="@id/img_poster"
+                    app:layout_constraintLeft_toLeftOf="@id/img_poster"
+                    app:layout_constraintRight_toRightOf="@id/img_poster"
+                    app:layout_constraintTop_toTopOf="@id/img_poster" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:fitsSystemWindows="false"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_4x">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_margin_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dimen_4x" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_margin_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dimen_4x" />
+
+            <TextView
+                android:id="@+id/tv_pg"
+                style="@style/pgStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_13x"
+                android:background="@drawable/ic_rectangle"
+                android:gravity="center"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="+13" />
+
+            <TextView
+                android:id="@+id/tv_tag_line"
+                style="@style/tagLineDetailsStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_1x"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Action, Adventure, Drama" />
+
+            <ru.androidacademy.gooseeye.RatingBarSvg
+                android:id="@+id/ratingBar"
+                style="@style/ratingBarDetailsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_4x"
+                android:layout_marginTop="@dimen/dimen_2x"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_bar_details"
+                android:stepSize="0.01"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
+                tools:rating="4" />
+
+
+            <TextView
+                android:id="@+id/tv_review"
+                style="@style/reviewDetailsStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_2x"
+                android:layout_marginTop="@dimen/dimen_1x"
+                android:textAllCaps="true"
+                app:layout_constraintLeft_toRightOf="@id/ratingBar"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
+                tools:text="reviews" />
+
+            <TextView
+                android:id="@+id/tv_story_line"
+                style="@style/storyLineCastStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6x"
+                android:text="@string/story_line_text"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_review" />
+
+            <TextView
+                android:id="@+id/tv_story_line_details"
+                style="@style/whiteTextStyle14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_1x"
+                android:paddingTop="@dimen/dimen_2x"
+                android:paddingBottom="@dimen/dimen_2x"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_story_line"
+                tools:text="@tools:sample/lorem/random" />
+
+            <TextView
+                android:id="@+id/tv_cast"
+                style="@style/storyLineCastStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6x"
+                android:layout_marginBottom="@dimen/dimen_2x"
+                android:paddingTop="@dimen/dimen_1x"
+                android:paddingBottom="@dimen/dimen_1x"
+                android:text="@string/cast_text"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_story_line_details" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_artist_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layout_constraintLeft_toRightOf="@id/guideline_margin_start"
+                app:layout_constraintRight_toLeftOf="@id/guideline_margin_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_cast" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

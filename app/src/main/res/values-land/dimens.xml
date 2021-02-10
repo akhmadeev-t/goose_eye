@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="artist_image">160dp</dimen>
+    <dimen name="dimen_item_actor_image">160dp</dimen>
 </resources>
