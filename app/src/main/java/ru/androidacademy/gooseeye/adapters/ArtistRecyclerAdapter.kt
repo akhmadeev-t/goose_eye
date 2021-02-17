@@ -6,13 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.data.Actor
-import ru.androidacademy.gooseeye.data.Movie
 import ru.androidacademy.gooseeye.databinding.ItemArtistBinding
 
-class ArtistRecyclerAdapter() :
+class ArtistRecyclerAdapter(private val values: List<Actor>) :
     RecyclerView.Adapter<ArtistRecyclerAdapter.ArtistViewHolder>() {
-
-    private var actors = emptyList<Actor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
         val binding = ItemArtistBinding
@@ -21,11 +18,11 @@ class ArtistRecyclerAdapter() :
     }
 
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
-        holder.bind(actors[position])
+        holder.bind(values[position])
     }
 
     override fun getItemCount(): Int {
-        return actors.size
+        return values.size
     }
 
     class ArtistViewHolder(private val binding: ItemArtistBinding) :
@@ -40,10 +37,5 @@ class ArtistRecyclerAdapter() :
                 tvArtistInfo.text = actor.name
             }
         }
-    }
-
-    fun setActors(list: List<Actor>) {
-        actors = list
-        notifyDataSetChanged()
     }
 }
