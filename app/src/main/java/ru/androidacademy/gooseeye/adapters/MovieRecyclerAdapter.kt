@@ -47,7 +47,7 @@ class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
                         )
                     }"
                 tvMovieName.text = movie.title
-                tvMin.text = "${movie.runtime} ${itemView.resources.getString(R.string.item_min)}"
+                tvRelease.text = movie.release
                 rbItem.rating = (movie.ratings) / 2
                 cbLike.isChecked = false
             }

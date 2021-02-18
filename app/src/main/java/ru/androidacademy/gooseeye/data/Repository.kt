@@ -71,12 +71,18 @@ class Repository() {
                 ratings = jsonMovie.ratings,
                 numberOfRatings = jsonMovie.numberOfReviews,
                 minimumAge = if (jsonMovie.adult) 16 else 13,
-                runtime = 0,
+                release = createReleaseDate(jsonMovie.release),
                 genres = jsonMovie.genreIds.map {
                     genresMap[it] ?: throw IllegalArgumentException("Genre not found")
                 },
                 actors = emptyList()
             ))
         }
+    }
+
+    private fun createReleaseDate(date: String): String {
+        val delimiter = "-"
+        val subString = date.split(delimiter)
+        return subString.reversed().joinToString("/")
     }
 }
