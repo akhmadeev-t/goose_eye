@@ -4,38 +4,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import ru.androidacademy.gooseeye.api.NetworkModule
 import ru.androidacademy.gooseeye.api.RetrofitModule
 import ru.androidacademy.gooseeye.data.models.Actor
 import ru.androidacademy.gooseeye.data.models.Genre
+import ru.androidacademy.gooseeye.data.models.JsonMovie
 import ru.androidacademy.gooseeye.data.models.Movie
 
 @ExperimentalSerializationApi
 class Repository() {
-
-    @Serializable
-    class JsonMovie(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("title")
-        val title: String,
-        @SerialName("poster_path")
-        val poster: String,
-        @SerialName("backdrop_path")
-        val backdrop: String,
-        @SerialName("genre_ids")
-        val genreIds: List<Int>,
-        @SerialName("vote_average")
-        val ratings: Float,
-        @SerialName("overview")
-        val overview: String,
-        @SerialName("adult")
-        val adult: Boolean,
-        @SerialName("vote_count")
-        val numberOfReviews: Int,
-    )
 
     private suspend fun loadGenresFromApi(): List<Genre> = withContext(Dispatchers.IO) {
         val jsonGenres = mutableListOf<Genre>()
