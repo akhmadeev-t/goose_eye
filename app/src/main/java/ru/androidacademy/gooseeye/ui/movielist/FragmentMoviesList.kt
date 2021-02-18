@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.fragments
+package ru.androidacademy.gooseeye.ui.movielist
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import ru.androidacademy.gooseeye.MainActivity
-import ru.androidacademy.gooseeye.adapters.MovieRecyclerAdapter
 import ru.androidacademy.gooseeye.databinding.FragmentMoviesListBinding
-import ru.androidacademy.gooseeye.viewmodels.MoviesListViewModel
-import ru.androidacademy.gooseeye.viewmodels.MoviesListViewModelFactory
 
 class FragmentMoviesList : Fragment() {
 

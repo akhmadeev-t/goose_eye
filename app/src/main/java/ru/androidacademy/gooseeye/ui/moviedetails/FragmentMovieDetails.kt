@@ -1,6 +1,7 @@
-package ru.androidacademy.gooseeye.fragments
+package ru.androidacademy.gooseeye.ui.moviedetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
-import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModel
-import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModelFactory
 
 class FragmentMovieDetails : Fragment() {
 
     private lateinit var movie: Movie
+    private lateinit var actorAdapter: ArtistRecyclerAdapter
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MovieDetailsViewModel by viewModels { MovieDetailsViewModelFactory(movie) }
@@ -44,6 +43,7 @@ class FragmentMovieDetails : Fragment() {
                 setDisplayShowHomeEnabled(true)
             }
         }
+        actorAdapter = ArtistRecyclerAdapter()
         subscribe(view)
         setUpRecyclerViewArtist()
     }
@@ -68,6 +68,7 @@ class FragmentMovieDetails : Fragment() {
             rvArtistList.apply {
                 addItemDecoration(divider)
                 layoutManager = linearLayoutManager
+                adapter = actorAdapter
             }
         }
     }
@@ -94,7 +95,8 @@ class FragmentMovieDetails : Fragment() {
         }
 
         viewModel.actors.observe(viewLifecycleOwner) {
-            binding.rvArtistList.adapter = ArtistRecyclerAdapter(it)
+            actorAdapter.setActors(it)
+            Log.d("ActorsList", it.toString())
         }
     }
 

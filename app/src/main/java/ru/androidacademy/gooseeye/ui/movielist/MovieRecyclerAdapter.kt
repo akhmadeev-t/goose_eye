@@ -1,11 +1,11 @@
-package ru.androidacademy.gooseeye.adapters
+package ru.androidacademy.gooseeye.ui.movielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.ItemMovieBinding
 
 class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
@@ -47,7 +47,7 @@ class MovieRecyclerAdapter(private val listener: (Movie) -> Unit) :
                         )
                     }"
                 tvMovieName.text = movie.title
-                tvMin.text = "${movie.runtime} ${itemView.resources.getString(R.string.item_min)}"
+                tvRelease.text = movie.release
                 rbItem.rating = (movie.ratings) / 2
                 cbLike.isChecked = false
             }

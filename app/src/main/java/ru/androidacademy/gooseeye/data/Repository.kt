@@ -1,121 +1,88 @@
 package ru.androidacademy.gooseeye.data
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.ExperimentalSerializationApi
+import ru.androidacademy.gooseeye.api.NetworkModule
+import ru.androidacademy.gooseeye.api.RetrofitModule
+import ru.androidacademy.gooseeye.data.models.Actor
+import ru.androidacademy.gooseeye.data.models.Genre
+import ru.androidacademy.gooseeye.data.models.JsonMovie
+import ru.androidacademy.gooseeye.data.models.Movie
 
+@ExperimentalSerializationApi
 class Repository() {
 
-    private val jsonFormat = Json { ignoreUnknownKeys = true }
-
-    @Serializable
-    private class JsonGenre(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("name")
-        val name: String
-    )
-
-    @Serializable
-    private class JsonActor(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("name")
-        val name: String,
-        @SerialName("profile_path")
-        val profilePicture: String
-    )
-
-    @Serializable
-    private class JsonMovie(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("title")
-        val title: String,
-        @SerialName("poster_path")
-        val posterPicture: String,
-        @SerialName("backdrop_path")
-        val backdropPicture: String,
-        @SerialName("runtime")
-        val runtime: Int,
-        @SerialName("genre_ids")
-        val genreIds: List<Int>,
-        @SerialName("actors")
-        val actors: List<Int>,
-        @SerialName("vote_average")
-        val ratings: Float,
-        @SerialName("vote_count")
-        val votesCount: Int,
-        @SerialName("overview")
-        val overview: String,
-        @SerialName("adult")
-        val adult: Boolean
-    )
-
-    private suspend fun loadGenres(): List<Genre> = withContext(Dispatchers.IO) {
-        val data = readAssetFileToString("genres.json")
-        parseGenres(data)
+    private suspend fun loadGenresFromApi(): List<Genre> = withContext(Dispatchers.IO) {
+        val jsonGenres = mutableListOf<Genre>()
+        coroutineScope {
+            jsonGenres.addAll(RetrofitModule.moviesApi.getGenres().genres)
+        }
+        jsonGenres
     }
 
-    private fun parseGenres(data: String): List<Genre> {
-        val jsonGenres = jsonFormat.decodeFromString<List<JsonGenre>>(data)
-        return jsonGenres.map { Genre(id = it.id, name = it.name) }
+    internal suspend fun loadCastFromApi(movieId: Int): List<Actor> = withContext(Dispatchers.IO) {
+        val jsonActors = mutableListOf<Actor>()
+        coroutineScope {
+            jsonActors.addAll(RetrofitModule.moviesApi.getActors(movieId).cast)
+        }
+        getCastWithProfile(jsonActors)
     }
 
-    private fun readAssetFileToString(fileName: String): String {
-        val stream = javaClass.getResourceAsStream("/assets/$fileName")
-        return stream!!.bufferedReader().readText()
+    private fun getCastWithProfile(
+        jsonActors: List<Actor>
+    ): List<Actor> {
+        val actors = mutableListOf<Actor>()
+        actors.addAll(jsonActors)
+        jsonActors.forEach { jsonActor ->
+            if (jsonActor.picture == null) {
+                actors.remove(jsonActor)
+            }
+        }
+        actors.forEach { actor ->
+            actor.picture = NetworkModule.createImageUrl(actor.picture!!)
+        }
+        return actors
     }
 
-    private suspend fun loadActors(): List<Actor> = withContext(Dispatchers.IO) {
-        val data = readAssetFileToString("people.json")
-        parseActors(data)
+    internal suspend fun loadMoviesFromApi(): List<Movie> = withContext(Dispatchers.IO) {
+        val jsonMovies = mutableListOf<JsonMovie>()
+        val genres = loadGenresFromApi()
+        coroutineScope {
+            jsonMovies.addAll(RetrofitModule.moviesApi.getPopularMovies().results)
+        }
+        parseMoviesFromApi(jsonMovies, genres)
     }
 
-    private fun parseActors(data: String): List<Actor> {
-        val jsonActors = jsonFormat.decodeFromString<List<JsonActor>>(data)
-        return jsonActors.map { Actor(id = it.id, name = it.name, picture = it.profilePicture) }
-    }
-
-    internal suspend fun loadMovies(): List<Movie> = withContext(Dispatchers.IO) {
-        val genresMap = loadGenres()
-        val actorsMap = loadActors()
-
-        val data = readAssetFileToString("data.json")
-        parseMovies(data, genresMap, actorsMap)
-    }
-
-    private fun parseMovies(
-        data: String,
-        genres: List<Genre>,
-        actors: List<Actor>
+    private fun parseMoviesFromApi(
+        jsonMovies: List<JsonMovie>,
+        genres: List<Genre>
     ): List<Movie> {
         val genresMap = genres.associateBy { it.id }
-        val actorsMap = actors.associateBy { it.id }
-
-        val jsonMovies = jsonFormat.decodeFromString<List<JsonMovie>>(data)
 
         return jsonMovies.map { jsonMovie ->
             (Movie(
                 id = jsonMovie.id,
                 title = jsonMovie.title,
                 overview = jsonMovie.overview,
-                poster = jsonMovie.posterPicture,
-                backdrop = jsonMovie.backdropPicture,
+                poster = NetworkModule.createImageUrl(jsonMovie.poster),
+                backdrop = NetworkModule.createImageUrl(jsonMovie.backdrop),
                 ratings = jsonMovie.ratings,
-                numberOfRatings = jsonMovie.votesCount,
+                numberOfRatings = jsonMovie.numberOfReviews,
                 minimumAge = if (jsonMovie.adult) 16 else 13,
-                runtime = jsonMovie.runtime,
+                release = createReleaseDate(jsonMovie.release),
                 genres = jsonMovie.genreIds.map {
                     genresMap[it] ?: throw IllegalArgumentException("Genre not found")
                 },
-                actors = jsonMovie.actors.map {
-                    actorsMap[it] ?: throw IllegalArgumentException("Actor not found")
-                }
+                actors = emptyList()
             ))
         }
+    }
+
+    private fun createReleaseDate(date: String): String {
+        val delimiter = "-"
+        val subString = date.split(delimiter)
+        return subString.reversed().joinToString("/")
     }
 }

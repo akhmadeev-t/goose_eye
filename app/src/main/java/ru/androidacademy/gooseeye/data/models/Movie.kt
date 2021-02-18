@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.data
+package ru.androidacademy.gooseeye.data.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -13,7 +13,7 @@ data class Movie(
     val ratings: Float,
     val numberOfRatings: Int,
     val minimumAge: Int,
-    val runtime: Int,
+    val release: String,
     val genres: List<Genre>,
     val actors: List<Actor>
 ) : Parcelable
