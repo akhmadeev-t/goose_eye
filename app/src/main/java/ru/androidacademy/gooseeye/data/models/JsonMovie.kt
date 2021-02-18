@@ -23,4 +23,6 @@ class JsonMovie(
     val adult: Boolean,
     @SerialName("vote_count")
     val numberOfReviews: Int,
+    @SerialName("release_date")
+    val release: String
 )
