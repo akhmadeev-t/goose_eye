@@ -6,22 +6,11 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 import ru.androidacademy.gooseeye.api.NetworkModule
 import ru.androidacademy.gooseeye.api.RetrofitModule
 
 @ExperimentalSerializationApi
 class Repository() {
-
-    @Serializable
-    class JsonActor(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("name")
-        val name: String,
-        @SerialName("profile_path")
-        val profilePicture: String?
-    )
 
     @Serializable
     class JsonMovie(
@@ -54,30 +43,27 @@ class Repository() {
     }
 
     internal suspend fun loadCastFromApi(movieId: Int): List<Actor> = withContext(Dispatchers.IO) {
-        val jsonActors = mutableListOf<JsonActor>()
+        val jsonActors = mutableListOf<Actor>()
         coroutineScope {
             jsonActors.addAll(RetrofitModule.moviesApi.getActors(movieId).cast)
         }
-        parseCastFromApi(jsonActors)
+        getCastWithProfile(jsonActors)
     }
 
-    private fun parseCastFromApi(
-        jsonActors: List<JsonActor>
+    private fun getCastWithProfile(
+        jsonActors: List<Actor>
     ): List<Actor> {
-        val actors = mutableListOf<JsonActor>()
+        val actors = mutableListOf<Actor>()
         actors.addAll(jsonActors)
         jsonActors.forEach { jsonActor ->
-            if (jsonActor.profilePicture == null) {
+            if (jsonActor.picture == null) {
                 actors.remove(jsonActor)
             }
         }
-        return actors.map { jsonActor ->
-            (Actor(
-                id = jsonActor.id,
-                name = jsonActor.name,
-                picture = NetworkModule.createImageUrl(jsonActor.profilePicture.orEmpty())
-            ))
+        actors.forEach { actor ->
+            actor.picture = NetworkModule.createImageUrl(actor.picture!!)
         }
+        return actors
     }
 
     internal suspend fun loadMoviesFromApi(): List<Movie> = withContext(Dispatchers.IO) {
