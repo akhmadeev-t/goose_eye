@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.viewmodels
+package ru.androidacademy.gooseeye.ui.moviedetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

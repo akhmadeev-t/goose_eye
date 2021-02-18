@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.ActivityMainBinding
-import ru.androidacademy.gooseeye.fragments.FragmentMovieDetails
-import ru.androidacademy.gooseeye.fragments.FragmentMoviesList
+import ru.androidacademy.gooseeye.ui.moviedetails.FragmentMovieDetails
+import ru.androidacademy.gooseeye.ui.movielist.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
 

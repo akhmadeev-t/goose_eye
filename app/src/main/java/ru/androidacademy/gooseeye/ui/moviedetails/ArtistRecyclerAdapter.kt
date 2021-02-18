@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.adapters
+package ru.androidacademy.gooseeye.ui.moviedetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.fragments
+package ru.androidacademy.gooseeye.ui.moviedetails
 
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
 import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
-import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModel
-import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModelFactory
 
 class FragmentMovieDetails : Fragment() {
 

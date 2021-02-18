@@ -1,4 +1,4 @@
-package ru.androidacademy.gooseeye.viewmodels
+package ru.androidacademy.gooseeye.ui.movielist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
