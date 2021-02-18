@@ -13,16 +13,6 @@ import ru.androidacademy.gooseeye.api.RetrofitModule
 @ExperimentalSerializationApi
 class Repository() {
 
-    private val jsonFormat = Json { ignoreUnknownKeys = true }
-
-    @Serializable
-    class JsonGenre(
-        @SerialName("id")
-        val id: Int,
-        @SerialName("name")
-        val name: String
-    )
-
     @Serializable
     class JsonActor(
         @SerialName("id")
@@ -56,19 +46,11 @@ class Repository() {
     )
 
     private suspend fun loadGenresFromApi(): List<Genre> = withContext(Dispatchers.IO) {
-        val jsonGenres = mutableListOf<JsonGenre>()
+        val jsonGenres = mutableListOf<Genre>()
         coroutineScope {
             jsonGenres.addAll(RetrofitModule.moviesApi.getGenres().genres)
         }
-        parseGenresFromApi(jsonGenres)
-    }
-
-    private fun parseGenresFromApi(
-        jsonGenres: List<JsonGenre>
-    ): List<Genre> {
-        return jsonGenres.map { jsonGenre ->
-            (Genre(id = jsonGenre.id, name = jsonGenre.name))
-        }
+        jsonGenres
     }
 
     internal suspend fun loadCastFromApi(movieId: Int): List<Actor> = withContext(Dispatchers.IO) {
