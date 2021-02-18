@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.R
-import ru.androidacademy.gooseeye.data.Actor
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Actor
 import ru.androidacademy.gooseeye.databinding.ItemArtistBinding
 
 class ArtistRecyclerAdapter() :

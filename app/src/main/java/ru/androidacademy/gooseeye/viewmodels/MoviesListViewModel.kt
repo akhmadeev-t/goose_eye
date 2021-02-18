@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.data.Repository
 
 @ExperimentalSerializationApi

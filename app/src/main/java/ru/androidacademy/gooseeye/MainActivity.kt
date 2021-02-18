@@ -3,7 +3,7 @@ package ru.androidacademy.gooseeye
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.ActivityMainBinding
 import ru.androidacademy.gooseeye.fragments.FragmentMovieDetails
 import ru.androidacademy.gooseeye.fragments.FragmentMoviesList

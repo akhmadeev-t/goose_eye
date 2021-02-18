@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import ru.androidacademy.gooseeye.MainActivity
 import ru.androidacademy.gooseeye.R
 import ru.androidacademy.gooseeye.adapters.ArtistRecyclerAdapter
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.databinding.FragmentMoviesDetailsBinding
 import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModel
 import ru.androidacademy.gooseeye.viewmodels.MovieDetailsViewModelFactory

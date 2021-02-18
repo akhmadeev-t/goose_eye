@@ -8,6 +8,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import ru.androidacademy.gooseeye.api.NetworkModule
 import ru.androidacademy.gooseeye.api.RetrofitModule
+import ru.androidacademy.gooseeye.data.models.Actor
+import ru.androidacademy.gooseeye.data.models.Genre
+import ru.androidacademy.gooseeye.data.models.Movie
 
 @ExperimentalSerializationApi
 class Repository() {

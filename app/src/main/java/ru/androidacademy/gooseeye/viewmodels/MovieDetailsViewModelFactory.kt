@@ -2,7 +2,7 @@ package ru.androidacademy.gooseeye.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.androidacademy.gooseeye.data.Movie
+import ru.androidacademy.gooseeye.data.models.Movie
 import ru.androidacademy.gooseeye.data.Repository
 
 @Suppress("UNCHECKED_CAST")
